@@ -1,0 +1,9 @@
+<% unless @books.blank? %>
+    <% @books.each do |f| %>
+      <%= f.title %>
+      <% f.author %>
+      <%= f.description %>
+    <% end %>
+    <% else %>
+    <p>No books to show</p>
+<% end %>
