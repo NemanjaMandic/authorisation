@@ -1,8 +1,8 @@
 class BooksController < ApplicationController
   before_action :find_book, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, only: [:show, :edit, :update, :destroy]
-  before_action :require_editor, only: [:show, :edit]
-  before_action :require_admin, only: [:create, :edit, :update, :destroy]
+ # before_action :require_user, only: [:show, :edit, :update, :destroy]
+ before_action :require_editor, only: [:show, :edit]
+  before_action :require_admin, only: [:destroy]
   
   def index
     @books = Book.all
@@ -23,6 +23,17 @@ class BooksController < ApplicationController
  end
  
   def show
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @book.update(book_params)
+      redirect_to book_path(@book)
+    else
+      render 'edit'
+    end
   end
   
   def destroy
